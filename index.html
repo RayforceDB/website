@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RayforceDB — High-Performance Columnar Database</title>
+    <meta name="description" content="RayforceDB is a blazing-fast open-source columnar database written in pure C. Under 1MB executable, cross-platform, with Python and Rust bindings.">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="assets/images/logo.png" alt="RayforceDB" class="nav-logo-img">
+                <span class="nav-logo-text">RAYFORCE<span class="accent">DB</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#code">Code</a>
+                <a href="#ecosystem">Ecosystem</a>
+                <a href="https://rayforcedb.com/" target="_blank">Docs</a>
+                <a href="https://github.com/RayforceDB/rayforce" class="nav-cta" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+            </div>
+            <button class="nav-mobile-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-container">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Open Source &amp; MIT Licensed
+            </div>
+            <h1 class="hero-title">
+                <span class="hero-title-line">Blazing Fast</span>
+                <span class="hero-title-line accent-gradient">Columnar Database</span>
+            </h1>
+            <p class="hero-subtitle">
+                Pure C. Under 1MB. Cross-platform. Built for the most demanding financial markets 
+                and high-frequency data processing workloads.
+            </p>
+            <div class="hero-typewriter">
+                <span class="typewriter-prompt">$</span>
+                <span class="typewriter-text" id="typewriter"></span>
+                <span class="typewriter-cursor">|</span>
+            </div>
+            <div class="hero-actions">
+                <a href="https://github.com/RayforceDB/rayforce" class="btn btn-primary" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7,10 12,15 17,10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Get Started
+                </a>
+                <a href="#code" class="btn btn-secondary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16,18 22,12 16,6"/>
+                        <polyline points="8,6 2,12 8,18"/>
+                    </svg>
+                    View Examples
+                </a>
+            </div>
+            <div class="hero-install">
+                <code class="install-code">
+                    <span class="install-prompt">$</span>
+                    <span class="install-cmd">pip install rayforce</span>
+                    <button class="install-copy" aria-label="Copy to clipboard">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                    </button>
+                </code>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span class="terminal-title">rayforce</span>
+                </div>
+                <div class="terminal-body">
+                    <pre><code><span class="code-comment">; Create a trades table</span>
+<span class="code-paren">(</span><span class="code-keyword">set</span> trades
+  <span class="code-paren">(</span><span class="code-func">table</span>
+    <span class="code-paren">(</span><span class="code-func">dict</span> <span class="code-symbol">`sym`price`qty</span>
+      <span class="code-paren">(</span><span class="code-func">list</span> <span class="code-symbol">`AAPL`MSFT`NVDA</span>
+            <span class="code-paren">[</span><span class="code-number">178.5</span> <span class="code-number">402.3</span> <span class="code-number">891.2</span><span class="code-paren">]</span>
+            <span class="code-paren">[</span><span class="code-number">100</span> <span class="code-number">200</span> <span class="code-number">150</span><span class="code-paren">]</span><span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span>
+
+<span class="code-comment">; Query: VWAP by symbol</span>
+<span class="code-paren">(</span><span class="code-keyword">select</span> <span class="code-paren">(</span><span class="code-func">dict</span> <span class="code-symbol">`sym`vwap</span>
+  <span class="code-paren">(</span><span class="code-func">list</span> sym
+    <span class="code-paren">(</span><span class="code-func">/</span> <span class="code-paren">(</span><span class="code-func">sum</span> <span class="code-paren">(</span><span class="code-func">*</span> price qty<span class="code-paren">)</span><span class="code-paren">)</span> <span class="code-paren">(</span><span class="code-func">sum</span> qty<span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span>
+  trades <span class="code-paren">(</span><span class="code-func">group</span> sym<span class="code-paren">)</span><span class="code-paren">)</span>
+
+<span class="code-result">; sym  | vwap
+; AAPL | 178.50
+; MSFT | 402.30
+; NVDA | 891.20</span></code></pre>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Why RayforceDB</span>
+                <h2 class="section-title">Engineered for <span class="accent">Extreme Performance</span></h2>
+                <p class="section-subtitle">
+                    Built from the ground up in pure C for financial markets where microseconds matter.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card feature-card-large">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                        </svg>
+                    </div>
+                    <h3>Pure C Performance</h3>
+                    <p>Written in pure C with automatic vectorization. No garbage collection pauses. No runtime overhead. Just raw, predictable speed.</p>
+                    <div class="feature-highlight">
+                        <span class="highlight-value">10x</span>
+                        <span class="highlight-label">faster than interpreted solutions</span>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/>
+                            <path d="M8 21h8M12 17v4"/>
+                        </svg>
+                    </div>
+                    <h3>Minimal Footprint</h3>
+                    <p>The entire database engine fits in under 1MB. Deploy instantly on any system without dependency hell.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3>Cross-Platform</h3>
+                    <p>Native support for Linux, macOS, and Windows. Compile to WebAssembly and run directly in browsers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Columnar Storage</h3>
+                    <p>Optimized for analytical workloads with column-oriented storage for maximum cache efficiency and compression.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <polyline points="4,17 10,11 4,5"/>
+                            <line x1="12" y1="19" x2="20" y2="19"/>
+                        </svg>
+                    </div>
+                    <h3>Rayfall Language</h3>
+                    <p>Lisp-inspired query language that's both powerful and readable. Lower learning curve than traditional array languages.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M16 18l6-6-6-6"/>
+                            <path d="M8 6l-6 6 6 6"/>
+                        </svg>
+                    </div>
+                    <h3>Language Bindings</h3>
+                    <p>First-class Python and Rust integrations. Seamlessly connect to your existing data science and production workflows.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Code Examples Section -->
+    <section id="code" class="code-section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Rayfall Language</span>
+                <h2 class="section-title">Expressive. <span class="accent">Readable.</span> Fast.</h2>
+                <p class="section-subtitle">
+                    Rayfall combines the power of array programming with the clarity of Lisp syntax.
+                </p>
+            </div>
+            <div class="code-tabs">
+                <div class="code-tab-list">
+                    <button class="code-tab active" data-tab="basics">Basics</button>
+                    <button class="code-tab" data-tab="tables">Tables</button>
+                    <button class="code-tab" data-tab="timeseries">Time Series</button>
+                    <button class="code-tab" data-tab="python">Python</button>
+                </div>
+                <div class="code-panels">
+                    <div class="code-panel active" data-panel="basics">
+                        <div class="code-block">
+                            <div class="code-block-header">
+                                <span class="code-lang">Rayfall</span>
+                                <button class="code-copy">Copy</button>
+                            </div>
+                            <pre><code><span class="code-comment">; Vector operations - automatic SIMD vectorization</span>
+<span class="code-paren">(</span><span class="code-keyword">set</span> prices <span class="code-paren">[</span><span class="code-number">100.5</span> <span class="code-number">101.2</span> <span class="code-number">99.8</span> <span class="code-number">102.1</span> <span class="code-number">103.4</span><span class="code-paren">]</span><span class="code-paren">)</span>
+<span class="code-paren">(</span><span class="code-keyword">set</span> volumes <span class="code-paren">[</span><span class="code-number">1000</span> <span class="code-number">1500</span> <span class="code-number">800</span> <span class="code-number">2000</span> <span class="code-number">1200</span><span class="code-paren">]</span><span class="code-paren">)</span>
+
+<span class="code-comment">; Element-wise multiplication</span>
+<span class="code-paren">(</span><span class="code-func">*</span> prices volumes<span class="code-paren">)</span>
+<span class="code-result">; → [100500.0 151800.0 79840.0 204200.0 124080.0]</span>
+
+<span class="code-comment">; Aggregations</span>
+<span class="code-paren">(</span><span class="code-func">avg</span> prices<span class="code-paren">)</span>  <span class="code-result">; → 101.4</span>
+<span class="code-paren">(</span><span class="code-func">max</span> prices<span class="code-paren">)</span>  <span class="code-result">; → 103.4</span>
+<span class="code-paren">(</span><span class="code-func">sum</span> volumes<span class="code-paren">)</span> <span class="code-result">; → 6500</span>
+
+<span class="code-comment">; Generate sequences and ranges</span>
+<span class="code-paren">(</span><span class="code-func">til</span> <span class="code-number">5</span><span class="code-paren">)</span>        <span class="code-result">; → [0 1 2 3 4]</span>
+<span class="code-paren">(</span><span class="code-func">reverse</span> prices<span class="code-paren">)</span> <span class="code-result">; reverse a vector</span></code></pre>
+                        </div>
+                    </div>
+                    <div class="code-panel" data-panel="tables">
+                        <div class="code-block">
+                            <div class="code-block-header">
+                                <span class="code-lang">Rayfall</span>
+                                <button class="code-copy">Copy</button>
+                            </div>
+                            <pre><code><span class="code-comment">; Create a table with dict</span>
+<span class="code-paren">(</span><span class="code-keyword">set</span> quotes
+  <span class="code-paren">(</span><span class="code-func">table</span>
+    <span class="code-paren">(</span><span class="code-func">dict</span> <span class="code-symbol">`sym`bid`ask`size</span>
+      <span class="code-paren">(</span><span class="code-func">list</span> <span class="code-symbol">`AAPL`MSFT`NVDA</span>
+            <span class="code-paren">[</span><span class="code-number">178.50</span> <span class="code-number">402.30</span> <span class="code-number">890.15</span><span class="code-paren">]</span>
+            <span class="code-paren">[</span><span class="code-number">178.55</span> <span class="code-number">402.35</span> <span class="code-number">890.25</span><span class="code-paren">]</span>
+            <span class="code-paren">[</span><span class="code-number">500</span> <span class="code-number">200</span> <span class="code-number">100</span><span class="code-paren">]</span><span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span>
+
+<span class="code-comment">; Query with computed columns and filter</span>
+<span class="code-paren">(</span><span class="code-keyword">select</span>
+  <span class="code-paren">(</span><span class="code-func">dict</span> <span class="code-symbol">`sym`spread`mid</span>
+    <span class="code-paren">(</span><span class="code-func">list</span> sym <span class="code-paren">(</span><span class="code-func">-</span> ask bid<span class="code-paren">)</span>
+          <span class="code-paren">(</span><span class="code-func">/</span> <span class="code-paren">(</span><span class="code-func">+</span> bid ask<span class="code-paren">)</span> <span class="code-number">2</span><span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span>
+  quotes <span class="code-paren">(</span><span class="code-func">where</span> <span class="code-paren">(</span><span class="code-func">></span> size <span class="code-number">150</span><span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span>
+
+<span class="code-result">; sym  | spread | mid
+; AAPL | 0.05   | 178.525
+; MSFT | 0.05   | 402.325</span></code></pre>
+                        </div>
+                    </div>
+                    <div class="code-panel" data-panel="timeseries">
+                        <div class="code-block">
+                            <div class="code-block-header">
+                                <span class="code-lang">Rayfall</span>
+                                <button class="code-copy">Copy</button>
+                            </div>
+                            <pre><code><span class="code-comment">; Time-based aggregation with xbar</span>
+<span class="code-paren">(</span><span class="code-keyword">set</span> ticks
+  <span class="code-paren">(</span><span class="code-func">table</span>
+    <span class="code-paren">(</span><span class="code-func">dict</span> <span class="code-symbol">`time`price`vol</span>
+      <span class="code-paren">(</span><span class="code-func">list</span> <span class="code-paren">(</span><span class="code-func">time</span> <span class="code-paren">[</span><span class="code-number">34200001</span> <span class="code-number">34200015</span> <span class="code-number">34201003</span><span class="code-paren">]</span><span class="code-paren">)</span>
+            <span class="code-paren">[</span><span class="code-number">100.10</span> <span class="code-number">100.15</span> <span class="code-number">100.20</span><span class="code-paren">]</span>
+            <span class="code-paren">[</span><span class="code-number">100</span> <span class="code-number">250</span> <span class="code-number">500</span><span class="code-paren">]</span><span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span>
+
+<span class="code-comment">; 1-second OHLCV bars using xbar</span>
+<span class="code-paren">(</span><span class="code-keyword">select</span>
+  <span class="code-paren">(</span><span class="code-func">dict</span> <span class="code-symbol">`o`h`l`c`v</span>
+    <span class="code-paren">(</span><span class="code-func">list</span> <span class="code-paren">(</span><span class="code-func">first</span> price<span class="code-paren">)</span> <span class="code-paren">(</span><span class="code-func">max</span> price<span class="code-paren">)</span>
+          <span class="code-paren">(</span><span class="code-func">min</span> price<span class="code-paren">)</span> <span class="code-paren">(</span><span class="code-func">last</span> price<span class="code-paren">)</span>
+          <span class="code-paren">(</span><span class="code-func">sum</span> vol<span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span>
+  ticks <span class="code-paren">(</span><span class="code-func">group</span> <span class="code-paren">(</span><span class="code-func">xbar</span> <span class="code-number">1000</span> time<span class="code-paren">)</span><span class="code-paren">)</span><span class="code-paren">)</span>
+
+<span class="code-comment">; As-of join for market data alignment</span>
+<span class="code-paren">(</span><span class="code-func">aj</span> <span class="code-symbol">`time</span> trades quotes<span class="code-paren">)</span></code></pre>
+                        </div>
+                    </div>
+                    <div class="code-panel" data-panel="python">
+                        <div class="code-block">
+                            <div class="code-block-header">
+                                <span class="code-lang">Python</span>
+                                <button class="code-copy">Copy</button>
+                            </div>
+                            <pre><code><span class="code-keyword">import</span> rayforce <span class="code-keyword">as</span> rf
+<span class="code-keyword">from</span> rayforce <span class="code-keyword">import</span> Vector, Table, Dict, Symbol
+
+<span class="code-comment"># Create typed vectors</span>
+prices = Vector.f64([<span class="code-number">178.5</span>, <span class="code-number">402.3</span>, <span class="code-number">891.2</span>])
+symbols = Vector.symbol([<span class="code-string">"AAPL"</span>, <span class="code-string">"MSFT"</span>, <span class="code-string">"NVDA"</span>])
+
+<span class="code-comment"># Create a table from dict</span>
+trades = Table.from_dict({
+    <span class="code-string">"sym"</span>: symbols,
+    <span class="code-string">"price"</span>: prices,
+    <span class="code-string">"qty"</span>: Vector.i64([<span class="code-number">100</span>, <span class="code-number">200</span>, <span class="code-number">150</span>])
+})
+
+<span class="code-comment"># Execute queries</span>
+result = trades.select([<span class="code-string">"sym"</span>, <span class="code-string">"price"</span>]) \
+               .where(<span class="code-string">"qty > 100"</span>) \
+               .group_by(<span class="code-string">"sym"</span>)
+
+<span class="code-comment"># Convert to pandas DataFrame</span>
+df = result.to_pandas()
+<span class="code-func">print</span>(df)
+<span class="code-result">#    sym   price
+# 0  MSFT  402.3
+# 1  NVDA  891.2</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ecosystem Section -->
+    <section id="ecosystem" class="ecosystem">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Ecosystem</span>
+                <h2 class="section-title">Complete <span class="accent">Database Ecosystem</span></h2>
+                <p class="section-subtitle">
+                    Everything you need to build, deploy, and integrate high-performance data systems.
+                </p>
+            </div>
+            <div class="ecosystem-grid">
+                <div class="ecosystem-card ecosystem-card-main">
+                    <div class="ecosystem-card-header">
+                        <div class="ecosystem-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M4 6h16M4 12h16M4 18h16"/>
+                            </svg>
+                        </div>
+                        <div class="ecosystem-stars">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="github-stars" data-repo="RayforceDB/rayforce">--</span>
+                        </div>
+                    </div>
+                    <h3>RayforceDB Core</h3>
+                    <p>The high-performance columnar database engine. Written in pure C with zero external dependencies.</p>
+                    <div class="ecosystem-tags">
+                        <span class="tag">C</span>
+                        <span class="tag">MIT License</span>
+                        <span class="tag">Core</span>
+                    </div>
+                    <div class="ecosystem-links">
+                        <a href="https://github.com/RayforceDB/rayforce" target="_blank">GitHub →</a>
+                        <a href="https://rayforcedb.com/" target="_blank">Docs →</a>
+                    </div>
+                </div>
+                <div class="ecosystem-card">
+                    <div class="ecosystem-card-header">
+                        <div class="ecosystem-icon ecosystem-icon-python">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/>
+                            </svg>
+                        </div>
+                        <div class="ecosystem-stars">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="github-stars" data-repo="RayforceDB/rayforce-py">--</span>
+                        </div>
+                    </div>
+                    <h3>rayforce-py</h3>
+                    <p>Python bindings with pandas integration and type hints.</p>
+                    <div class="ecosystem-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">MIT License</span>
+                    </div>
+                    <div class="ecosystem-links">
+                        <a href="https://github.com/RayforceDB/rayforce-py" target="_blank">GitHub →</a>
+                        <a href="https://raypy.rayforcedb.com/" target="_blank">Docs →</a>
+                    </div>
+                </div>
+                <div class="ecosystem-card">
+                    <div class="ecosystem-card-header">
+                        <div class="ecosystem-icon ecosystem-icon-rust">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.8 12l-1-1.2.5-1.5-1.4-.7v-1.6l-1.5-.4-.3-1.5-1.5.1-.7-1.4-1.4.5-1-1-1.2.5-1.2-.5-1 1-1.4-.5-.7 1.4-1.5-.1-.3 1.5-1.5.4v1.6l-1.4.7.5 1.5-1 1.2 1 1.2-.5 1.5 1.4.7v1.6l1.5.4.3 1.5 1.5-.1.7 1.4 1.4-.5 1 1 1.2-.5 1.2.5 1-1 1.4.5.7-1.4 1.5.1.3-1.5 1.5-.4v-1.6l1.4-.7-.5-1.5zm-6.1 5l-.3-.3c-.4-.4-1-.7-1.6-.7-.3 0-.6.1-.9.2l-.4-.7c.4-.2.8-.3 1.3-.3.8 0 1.6.3 2.2.9l.3.3zM12 17.5c-3 0-5.5-2.5-5.5-5.5s2.5-5.5 5.5-5.5 5.5 2.5 5.5 5.5-2.5 5.5-5.5 5.5zm0-9c-1.9 0-3.5 1.6-3.5 3.5s1.6 3.5 3.5 3.5 3.5-1.6 3.5-3.5-1.6-3.5-3.5-3.5z"/>
+                            </svg>
+                        </div>
+                        <div class="ecosystem-stars">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="github-stars" data-repo="RayforceDB/rayforce-rs">--</span>
+                        </div>
+                    </div>
+                    <h3>rayforce-rs</h3>
+                    <p>Native Rust bindings for safe, zero-cost abstractions over RayforceDB.</p>
+                    <div class="ecosystem-tags">
+                        <span class="tag">Rust</span>
+                    </div>
+                    <div class="ecosystem-links">
+                        <a href="https://github.com/RayforceDB/rayforce-rs" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+                <div class="ecosystem-card">
+                    <div class="ecosystem-card-header">
+                        <div class="ecosystem-icon ecosystem-icon-wasm">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0L1.5 6v12L12 24l10.5-6V6zm0 2.3l8.5 4.9v9.6L12 21.7l-8.5-4.9V7.2z"/>
+                                <path d="M12 5.5L6 9v6l6 3.5 6-3.5V9zm0 2l4 2.3v4.4L12 16.5 8 14.2V9.8z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>rayforce-wasm</h3>
+                    <p>WebAssembly build for running RayforceDB directly in browsers.</p>
+                    <div class="ecosystem-tags">
+                        <span class="tag">WebAssembly</span>
+                        <span class="tag">MIT License</span>
+                    </div>
+                    <div class="ecosystem-links">
+                        <a href="https://github.com/RayforceDB/rayforce-wasm" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+                <div class="ecosystem-card">
+                    <div class="ecosystem-card-header">
+                        <div class="ecosystem-icon ecosystem-icon-vscode">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17 1l-7 6.3L3.3 2 1 4v16l2.3 2L10 16.7 17 23l5-2.2V3.2zm0 3.5v15l-5-4.5V9z"/>
+                            </svg>
+                        </div>
+                        <div class="ecosystem-stars">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span class="github-stars" data-repo="RayforceDB/rayforce-vscode">--</span>
+                        </div>
+                    </div>
+                    <h3>rayforce-vscode</h3>
+                    <p>VS Code extension with syntax highlighting for the Rayfall query language.</p>
+                    <div class="ecosystem-tags">
+                        <span class="tag">VSCode</span>
+                        <span class="tag">MIT License</span>
+                    </div>
+                    <div class="ecosystem-links">
+                        <a href="https://github.com/RayforceDB/rayforce-vscode" target="_blank">GitHub →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag">Community</span>
+                <h2 class="section-title">What People Are <span class="accent">Saying</span></h2>
+                <p class="section-subtitle">
+                    Join the growing community of developers and data engineers using RayforceDB.
+                </p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card testimonial-featured">
+                    <div class="testimonial-quote">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="quote-icon">
+                            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                        </svg>
+                    </div>
+                    <p class="testimonial-text">The fact that the whole system is under one megabyte and written in pure C really stands out. That level of efficiency is rare today and shows a lot of engineering discipline behind the project.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PZ</div>
+                        <div class="author-info">
+                            <span class="author-name">Philipp Zhenov</span>
+                            <span class="author-role">Software Engineer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">This sounds very cool. I am eager to try it out.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AV</div>
+                        <div class="author-info">
+                            <span class="author-name">Anton Vorobets</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">It's great to see the new alternative RayForceDB. I'm curious about the design choices!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JS</div>
+                        <div class="author-info">
+                            <span class="author-name">Jo S.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">This is lovely!!!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PL</div>
+                        <div class="author-info">
+                            <span class="author-name">Paul Nikholas Lopez</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">This looks very interesting!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JH</div>
+                        <div class="author-info">
+                            <span class="author-name">Jamal Hussain</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Great work!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RH</div>
+                        <div class="author-info">
+                            <span class="author-name">Ryan Hamilton</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonials-cta">
+                <a href="https://rayforcedb.zulipchat.com/#narrow/channel/549008-Discuss" class="btn btn-primary" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                    </svg>
+                    Join Zulip Chat
+                </a>
+                <a href="https://x.com/RayforceDB" class="btn btn-secondary" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    Follow on X
+                </a>
+                <a href="https://www.reddit.com/r/rayforcedb/" class="btn btn-secondary" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                        <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                    </svg>
+                    r/rayforcedb
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="section-container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to Get Started?</h2>
+                <p class="cta-subtitle">Deploy RayforceDB in minutes. No dependencies. No setup complexity.</p>
+                <div class="cta-actions">
+                    <a href="https://github.com/RayforceDB/rayforce" class="btn btn-primary btn-large" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        Star on GitHub
+                    </a>
+                    <a href="mailto:anton@rayforcedb.com" class="btn btn-outline btn-large">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <img src="assets/images/logo.png" alt="RayforceDB" class="footer-logo-img">
+                        <span class="footer-logo-text">RAYFORCE<span class="accent">DB</span></span>
+                    </a>
+                    <p class="footer-tagline">High-performance columnar database for the modern data stack.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="https://github.com/RayforceDB/rayforce" target="_blank">Core Database</a>
+                        <a href="https://github.com/RayforceDB/rayforce-py" target="_blank">Python Bindings</a>
+                        <a href="https://github.com/RayforceDB/rayforce-rs" target="_blank">Rust Bindings</a>
+                        <a href="https://github.com/RayforceDB/rayforce-wasm" target="_blank">WebAssembly</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="https://rayforcedb.com/" target="_blank">Documentation</a>
+                        <a href="https://raypy.rayforcedb.com/" target="_blank">Python Docs</a>
+                        <a href="https://github.com/RayforceDB/rayforce-vscode" target="_blank">VSCode Extension</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Community</h4>
+                        <a href="https://rayforcedb.zulipchat.com/#narrow/channel/549008-Discuss" target="_blank">Zulip Chat</a>
+                        <a href="https://github.com/RayforceDB" target="_blank">GitHub</a>
+                        <a href="https://x.com/RayforceDB" target="_blank">X (Twitter)</a>
+                        <a href="https://www.reddit.com/r/rayforcedb/" target="_blank">Reddit</a>
+                        <a href="mailto:anton@rayforcedb.com">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RayforceDB. Open source under MIT License.</p>
+                <p class="footer-credits">Developed by <a href="https://lynxtrading.com/" target="_blank">Lynx Trading</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
+
