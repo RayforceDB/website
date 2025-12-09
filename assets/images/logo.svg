@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="goldGradient" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" style="stop-color:#EEC15C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D9A045;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer hexagon frame -->
+  <path d="M480 168
+           L760 325
+           Q800 348 800 395
+           L800 650
+           Q800 697 760 720
+           L520 855
+           Q480 878 440 855
+           L200 720
+           Q160 697 160 650
+           L160 395
+           Q160 348 200 325
+           L440 168
+           Q480 145 520 168
+           Z"
+        fill="none"
+        stroke="#3d3d3d"
+        stroke-width="2"/>
+  
+  <!-- Inner hexagon frame -->
+  <path d="M490 215
+           L730 355
+           Q762 375 762 415
+           L762 630
+           Q762 670 730 690
+           L510 815
+           Q478 835 446 815
+           L238 690
+           Q206 670 206 630
+           L206 415
+           Q206 375 238 355
+           L446 215
+           Q478 195 510 215
+           Z"
+        fill="none"
+        stroke="#3d3d3d"
+        stroke-width="2"/>
+  
+  <!-- Lightning bolt with integrated R -->
+  <path d="M730 160
+           L350 555
+           L480 555
+           L250 870
+           L340 870
+           L515 625
+           L515 615
+           L640 615
+           Q710 615 730 560
+           L730 525
+           Q730 470 660 470
+           L515 470
+           L515 460
+           L590 460
+           L730 160
+           Z"
+        fill="url(#goldGradient)"/>
+</svg>

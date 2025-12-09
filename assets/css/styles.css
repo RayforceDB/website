@@ -1011,10 +1011,15 @@ button {
     display: flex;
     flex-direction: column;
     transition: all var(--transition-base);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
 }
 
 .testimonial-card:hover {
-    border-color: rgba(233, 163, 32, 0.2);
+    border-color: rgba(233, 163, 32, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
 }
 
 .testimonial-featured {
@@ -1073,6 +1078,13 @@ button {
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--navy-900);
+}
+
+.author-avatar-img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .author-info {
