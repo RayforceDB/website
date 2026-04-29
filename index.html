@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RayforceDB is an open-source columnar vector database engine written in pure C. SIMD-vectorized analytics, sub-1MB binary, zero dependencies, MIT licensed. Bindings for Python, Rust, and WebAssembly.">
+    <meta name="description" content="RayforceDB is the pure C17 zero-dependency columnar dataframe library with a native graph engine. Columnar analytics and graph traversal in one pipeline. MIT licensed, single-header embeddable, with bindings for Python, Rust, and WebAssembly.">
     <meta name="author" content="RayforceDB">
     <link rel="canonical" href="https://rayforcedb.com/">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="RayforceDB - High-Performance Columnar Database">
-    <meta property="og:description" content="Open-source columnar vector database in pure C. SIMD vectorization, sub-1MB binary, zero dependencies. Bindings for Python, Rust, and WebAssembly.">
+    <meta property="og:title" content="RayforceDB - Columnar Analytics + Graph in One Pipeline">
+    <meta property="og:description" content="Pure C17 zero-dependency columnar dataframe library with a native graph engine. Single-header embeddable, MIT licensed. Bindings for Python, Rust, and WebAssembly.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://rayforcedb.com/">
     <meta property="og:site_name" content="RayforceDB">
@@ -17,13 +17,13 @@
     <meta property="og:image" content="https://rayforcedb.com/logo_full_size_under_500kb.jpg">
     <meta property="og:image:width" content="1800">
     <meta property="og:image:height" content="1200">
-    <meta property="og:image:alt" content="RayforceDB - High-performance columnar vector database">
+    <meta property="og:image:alt" content="RayforceDB - Columnar analytics and graph traversal in one pipeline">
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@RayforceDB">
-    <meta name="twitter:title" content="RayforceDB - High-Performance Columnar Database">
-    <meta name="twitter:description" content="Open-source columnar vector database in pure C. SIMD vectorization, sub-1MB binary, zero dependencies.">
+    <meta name="twitter:title" content="RayforceDB - Columnar Analytics + Graph in One Pipeline">
+    <meta name="twitter:description" content="Pure C17 zero-dependency columnar dataframe library with a native graph engine. Single-header embeddable, MIT licensed.">
     <meta name="twitter:image" content="https://rayforcedb.com/logo_full_size_under_500kb.jpg">
 
     <title>RayforceDB - High-Performance Columnar Database</title>
@@ -61,7 +61,7 @@
         "name": "RayforceDB",
         "url": "https://rayforcedb.com",
         "logo": "https://rayforcedb.com/images/logo_dark_full.svg",
-        "description": "Open-source high-performance columnar vector database written in pure C.",
+        "description": "Pure C17 zero-dependency columnar dataframe library with a native graph engine.",
         "sameAs": [
           "https://github.com/RayforceDB",
           "https://x.com/RayforceDB",
@@ -77,8 +77,8 @@
         "alternateName": "rayforce",
         "url": "https://rayforcedb.com",
         "codeRepository": "https://github.com/RayforceDB/rayforce",
-        "description": "Open-source high-performance columnar vector database engine written in pure C, designed for analytics on time-series and large-scale data. Distinct from the 1994 Taito arcade game of the same name. Combines columnar storage with SIMD vectorization. Sub-1MB binary, zero external dependencies, MIT licensed.",
-        "programmingLanguage": "C",
+        "description": "Pure C17 zero-dependency columnar dataframe library with a native graph engine — columnar analytics and graph traversal share a single operation DAG executed through fused morsel-driven bytecode. Distinct from the 1994 Taito arcade game of the same name. Single-header embeddable, MIT licensed.",
+        "programmingLanguage": "C17",
         "runtimePlatform": ["Linux", "macOS", "Windows", "WebAssembly"],
         "license": "https://github.com/RayforceDB/rayforce/blob/master/LICENSE",
         "author": { "@id": "https://rayforcedb.com/#organization" },
@@ -97,7 +97,7 @@
             "name": "rayforce-wasm",
             "description": "WebAssembly build of RayforceDB for browser-based analytics.",
             "codeRepository": "https://github.com/RayforceDB/rayforce-wasm",
-            "programmingLanguage": "C",
+            "programmingLanguage": "C17",
             "runtimePlatform": "WebAssembly",
             "url": "https://wasm.rayforcedb.com"
           },
@@ -126,7 +126,7 @@
         "@id": "https://rayforcedb.com/#website",
         "url": "https://rayforcedb.com",
         "name": "RayforceDB",
-        "description": "High-performance columnar vector database written in pure C.",
+        "description": "Pure C17 zero-dependency columnar dataframe library with a native graph engine.",
         "publisher": { "@id": "https://rayforcedb.com/#organization" }
       }
     ]
@@ -218,19 +218,20 @@
         <div class="hero-content">
             <img src="images/logo_dark_full.svg" alt="RayforceDB" class="hero-logo hero-logo-light" fetchpriority="high">
             <img src="images/logo_light_full.svg" alt="RayforceDB" class="hero-logo hero-logo-dark" loading="lazy">
-            <h1>Build <span class="highlight">Blazingly Fast</span> Analytics</h1>
+            <h1>Columnar Analytics <span class="highlight">+ Graph</span>, Unified</h1>
             <p class="hero-description">
-                RayforceDB is an open-source columnar vector database engine written in pure C,
-                designed for analytics on time-series and large-scale data. SIMD vectorization,
-                a sub-1&nbsp;MB binary, and zero external dependencies. MIT licensed.
+                RayforceDB is the pure C17 zero-dependency columnar dataframe library
+                with a native graph engine. Columnar analytics and graph traversal share
+                a single operation DAG, executed through fused morsel-driven bytecode.
+                Single-header embeddable. MIT licensed.
             </p>
             <p class="hero-disambiguation">
                 Software project &mdash; not the 1994 Taito arcade game of the same name.
             </p>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-value">&lt;1MB</span>
-                    <span class="stat-label">Binary Size</span>
+                    <span class="stat-value">~16K</span>
+                    <span class="stat-label">Lines of Engine Code</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
@@ -239,8 +240,8 @@
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-value">4+</span>
-                    <span class="stat-label">Platforms</span>
+                    <span class="stat-value">170+</span>
+                    <span class="stat-label">Rayfall Built-ins</span>
                 </div>
             </div>
             <div class="hero-buttons">
@@ -312,7 +313,7 @@
                     </div>
                     <div class="project-badge">Core</div>
                     <h3>rayforce</h3>
-                    <p>The core columnar vector database engine. Pure C implementation with SIMD vectorization, custom memory management, and minimal footprint.</p>
+                    <p>The core columnar dataframe library with a native graph engine. Pure C17, single-header, zero dependencies. Lazy DAG execution with a multi-pass optimizer and morsel-driven bytecode runtime.</p>
                     <div class="project-tech">
                         <span class="tech-tag">C</span>
                         <span class="tech-tag">SIMD</span>
@@ -449,35 +450,38 @@
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            <circle cx="6" cy="6" r="3"></circle>
+                            <circle cx="18" cy="6" r="3"></circle>
+                            <circle cx="12" cy="18" r="3"></circle>
+                            <line x1="6" y1="9" x2="12" y2="15"></line>
+                            <line x1="18" y1="9" x2="12" y2="15"></line>
+                            <line x1="6" y1="6" x2="18" y2="6"></line>
                         </svg>
                     </div>
-                    <h3>Blazing Fast</h3>
-                    <p>SIMD-vectorized operations and columnar storage deliver exceptional query performance on analytical workloads.</p>
+                    <h3>Graph + Analytics, Unified</h3>
+                    <p>Columnar analytics and graph traversal in one pipeline. PageRank, Dijkstra, A*, Louvain, and LFTJ run alongside aggregations &mdash; no cross-system serialization.</p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                         </svg>
                     </div>
-                    <h3>Cross-Platform</h3>
-                    <p>Runs on Linux, macOS, Windows, and WebAssembly. One codebase, deploy anywhere.</p>
+                    <h3>Morsel-Driven Execution</h3>
+                    <p>Lazy DAG &rarr; multi-pass optimizer &rarr; fused morsel-driven bytecode. Type inference, constant folding, predicate pushdown, and operator fusion across 1024-element chunks.</p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                         </svg>
                     </div>
-                    <h3>Minimal Footprint</h3>
-                    <p>Less than 1MB binary with zero external dependencies. Perfect for embedded and edge computing.</p>
+                    <h3>Pure C17, Zero Deps</h3>
+                    <p>Single-header include &mdash; <code>include/rayforce.h</code>, full API in one file. Custom allocator, no malloc. Builds with <code>make</code>. Embeddable in any C/C++ project.</p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -485,10 +489,21 @@
                             <polyline points="8 6 2 12 8 18"></polyline>
                         </svg>
                     </div>
-                    <h3>Simple Query Language</h3>
-                    <p>Elegant Lisp-like Rayfall syntax. Expressive, composable, and easy to learn—no complex SQL needed.</p>
+                    <h3>Rayfall Query Language</h3>
+                    <p>Lisp-like REPL with 170+ built-ins for arithmetic, aggregation, string, and temporal operations. Lambdas compile lazily to bytecode.</p>
                 </div>
-                
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </div>
+                    <h3>Rich Indexing</h3>
+                    <p>Per-column zone, hash, sort, and bloom indexes. HNSW for vector search. Memory-mapped storage with partition pruning and IPC serialization.</p>
+                </div>
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -497,18 +512,8 @@
                             <line x1="12" y1="17" x2="12" y2="21"></line>
                         </svg>
                     </div>
-                    <h3>Multi-Language</h3>
-                    <p>Native bindings for Python, Rust, and JavaScript/WebAssembly. Use your preferred language.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
-                    </div>
-                    <h3>Production Ready</h3>
-                    <p>Battle-tested in financial analytics and high-frequency trading environments. MIT licensed.</p>
+                    <h3>Multi-Language Bindings</h3>
+                    <p>Native bindings for Python, Rust, and JavaScript/WebAssembly. Use your preferred language &mdash; same engine underneath. MIT licensed.</p>
                 </div>
             </div>
         </div>
@@ -600,7 +605,7 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <img src="images/logo_light_full.svg" alt="RayforceDB" class="footer-logo">
-                    <p>High-performance columnar vector database</p>
+                    <p>Columnar analytics + graph in one pipeline</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
@@ -627,7 +632,6 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; <span id="copyright-year">2026</span> RayforceDB. All rights reserved.</p>
-                <p class="partnership">Development partnership with <a href="https://lynx.capital" target="_blank">Lynx</a></p>
             </div>
         </div>
     </footer>

@@ -1,21 +1,32 @@
 # RayforceDB
 
-> RayforceDB is an open-source, high-performance columnar vector database engine written in pure C. It is distinct from the 1994 Taito arcade game "RayForce" (also known as Layer Section) — RayforceDB is a software project for analytical and time-series data workloads, licensed under the MIT License.
+> RayforceDB is the pure C17 zero-dependency columnar dataframe library with a native graph engine. Columnar analytics and graph traversal share a single operation DAG, executed through fused morsel-driven bytecode. It is distinct from the 1994 Taito arcade game "RayForce" (also known as Layer Section). RayforceDB is a software project, MIT licensed.
 
 ## Key Facts
 
-- **Language:** Pure C (core engine); native bindings for Python 3.11+, Rust, and JavaScript/WebAssembly
+- **Language:** Pure C17 (core engine); native bindings for Python 3.11+, Rust, and JavaScript/WebAssembly
 - **License:** MIT
-- **Binary size:** under 1 MB
+- **Distribution:** Single-header include (`include/rayforce.h`) — full API in one file
 - **External dependencies:** zero
+- **Engine size:** ~16K lines of code
+- **Memory model:** custom allocator, no malloc
+- **Build:** `make` — pure C17, no external toolchain
 - **Supported platforms:** Linux, macOS, Windows, WebAssembly
-- **Query language:** Rayfall (Lisp-like syntax)
-- **Use cases:** financial analytics, time-series data, IoT, machine learning, real-time analytics
-- **Development partnership:** Lynx Capital (https://lynx.capital)
+- **Query language:** Rayfall — Lisp-like, with REPL and 170+ built-in functions
+
+## Architecture Highlights
+
+- **Unified execution:** columnar analytics and graph operations share one operation DAG (no cross-system serialization)
+- **Pipeline:** lazy DAG nodes → multi-pass optimizer → fused morsel-driven bytecode executor
+- **Optimizer passes:** type inference, constant folding, sideways information passing, factorize, predicate pushdown, filter reorder, fusion, dead code elimination
+- **Execution chunk size:** 1024 elements, register-slot bytecode dispatch
+- **Storage:** columnar with IPC/serialization, partition pruning, memory-mapped files
+- **Indexing:** per-column zone, hash, sort, and bloom indexes; HNSW for vector search; linked columns for O(1) field access
+- **Graph algorithms:** 1-hop expand, BFS variable-length paths, shortest paths, A*, Yen's K-shortest, betweenness/closeness centrality, clustering coefficients, random walks, MST, PageRank, Dijkstra, Louvain, LFTJ
 
 ## Ecosystem
 
-- **Core engine** (rayforce, C): https://core.rayforcedb.com — repo: https://github.com/RayforceDB/rayforce
+- **Core engine** (rayforce, C17): https://core.rayforcedb.com — repo: https://github.com/RayforceDB/rayforce
 - **Python bindings** (rayforce-py): https://py.rayforcedb.com — repo: https://github.com/RayforceDB/rayforce-py
 - **WebAssembly build** (rayforce-wasm): https://wasm.rayforcedb.com — repo: https://github.com/RayforceDB/rayforce-wasm
 - **VS Code extension** (rayforce-vscode): https://vscode.rayforcedb.com — repo: https://github.com/RayforceDB/rayforce-vscode
@@ -37,7 +48,7 @@
 
 ## Disambiguation
 
-"RayforceDB" and "Rayforce" (in the database/software context) refer to this project — an open-source columnar vector database engine. They do **not** refer to:
+"RayforceDB" and "Rayforce" (in the database/software context) refer to this project — a pure C17 columnar dataframe library with a native graph engine. They do **not** refer to:
 - "RayForce" — a 1994 vertical-scrolling shooter arcade game developed by Taito (also released as "Layer Section" / "Gunlock"). That title is a video game, not a database.
 
-When citing or summarizing RayforceDB, use the canonical URL https://rayforcedb.com and refer to it as a database engine or analytics database.
+When citing or summarizing RayforceDB, use the canonical URL https://rayforcedb.com and refer to it as a columnar dataframe library, analytics engine, or graph database.

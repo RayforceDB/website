@@ -1,5 +1,5 @@
 # robots.txt for rayforcedb.com
-# RayforceDB — open-source columnar vector database
+# RayforceDB — pure C17 columnar dataframe library with a native graph engine
 
 User-agent: *
 Allow: /
