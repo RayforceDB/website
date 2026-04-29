@@ -6,23 +6,25 @@
 
 - **Language:** Pure C17 (core engine); native bindings for Python 3.11+, Rust, and JavaScript/WebAssembly
 - **License:** MIT
-- **Distribution:** Single-header include (`include/rayforce.h`) — full API in one file
+- **Distribution:** Single-header public API (`include/rayforce.h`)
 - **External dependencies:** zero
-- **Engine size:** ~16K lines of code
-- **Memory model:** custom allocator, no malloc
+- **Memory model:** custom buddy allocator with slab cache (O(1) for ~90% of allocations); thread-local arenas, lock-free allocation, COW ref counting; no malloc
 - **Build:** `make` — pure C17, no external toolchain
 - **Supported platforms:** Linux, macOS, Windows, WebAssembly
 - **Query language:** Rayfall — Lisp-like, with REPL and 170+ built-in functions
 
 ## Architecture Highlights
 
-- **Unified execution:** columnar analytics and graph operations share one operation DAG (no cross-system serialization)
-- **Pipeline:** lazy DAG nodes → multi-pass optimizer → fused morsel-driven bytecode executor
-- **Optimizer passes:** type inference, constant folding, sideways information passing, factorize, predicate pushdown, filter reorder, fusion, dead code elimination
-- **Execution chunk size:** 1024 elements, register-slot bytecode dispatch
+- **Unified execution:** columnar analytics, graph traversal, and Datalog rules compile to one lazy operation DAG; nothing runs until `ray_execute`
+- **Multi-pass optimizer:** type inference → constant folding → sideways information passing (SIP) → factorize → predicate pushdown → filter reorder → projection pushdown → partition pruning → fusion → dead code elimination
+- **Worst-case-optimal joins:** Leapfrog TrieJoin (LFTJ) for multi-way joins; radix-partitioned hash joins sized to fit L2 cache (256 KB partitions)
+- **Execution chunk size:** 1024-element morsels (L1-resident), register-slot bytecode dispatch, parallel morsel dispatch via thread pool
+- **Graph storage:** double-indexed CSR (forward + reverse), mmap-backed
+- **Graph algorithms:** BFS, DFS, Dijkstra, A*, PageRank, Louvain, Betweenness, LFTJ, factorized expansion, SIP-pruned traversal
 - **Storage:** columnar with IPC/serialization, partition pruning, memory-mapped files
-- **Indexing:** per-column zone, hash, sort, and bloom indexes; HNSW for vector search; linked columns for O(1) field access
-- **Graph algorithms:** 1-hop expand, BFS variable-length paths, shortest paths, A*, Yen's K-shortest, betweenness/closeness centrality, clustering coefficients, random walks, MST, PageRank, Dijkstra, Louvain, LFTJ
+- **Indexing:** per-column zone, hash, sort, and bloom indexes; multi-metric HNSW (cosine / L2 / inner-product) for vector search
+- **Filter-aware ANN:** the `where` predicate pushes into HNSW's beam loop so rejected candidates don't consume result slots
+- **Rayfall language:** Lisp-like REPL; lambdas compile lazily to bytecode and run in a computed-goto VM
 
 ## Ecosystem
 

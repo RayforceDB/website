@@ -556,16 +556,8 @@ img {
     font-size: 1.25rem;
     color: var(--text-secondary);
     max-width: 640px;
-    margin: 0 auto 12px;
-    line-height: 1.7;
-}
-
-.hero-disambiguation {
-    font-size: 0.85rem;
-    color: var(--text-tertiary);
-    max-width: 640px;
     margin: 0 auto 40px;
-    font-style: italic;
+    line-height: 1.7;
 }
 
 .hero-stats {
@@ -1047,10 +1039,6 @@ img {
 .footer-bottom p {
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.9rem;
-}
-
-.footer-bottom .partnership {
-    margin-top: 8px;
 }
 
 .footer-bottom a {

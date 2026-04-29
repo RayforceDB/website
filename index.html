@@ -220,28 +220,24 @@
             <img src="images/logo_light_full.svg" alt="RayforceDB" class="hero-logo hero-logo-dark" loading="lazy">
             <h1>Columnar Analytics <span class="highlight">+ Graph</span>, Unified</h1>
             <p class="hero-description">
-                RayforceDB is the pure C17 zero-dependency columnar dataframe library
-                with a native graph engine. Columnar analytics and graph traversal share
-                a single operation DAG, executed through fused morsel-driven bytecode.
-                Single-header embeddable. MIT licensed.
-            </p>
-            <p class="hero-disambiguation">
-                Software project &mdash; not the 1994 Taito arcade game of the same name.
+                RayforceDB compiles columnar analytics, graph traversal, and Datalog
+                rules into a single lazy DAG, then executes them as fused
+                morsel-driven bytecode. Pure C17, zero dependencies, MIT licensed.
             </p>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-value">~16K</span>
-                    <span class="stat-label">Lines of Engine Code</span>
+                    <span class="stat-value">1024</span>
+                    <span class="stat-label">Element Morsels (L1-Resident)</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
                     <span class="stat-value">0</span>
-                    <span class="stat-label">Dependencies</span>
+                    <span class="stat-label">External Dependencies</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-value">1</span>
-                    <span class="stat-label">Header File</span>
+                    <span class="stat-value">WCO</span>
+                    <span class="stat-label">Joins (LFTJ)</span>
                 </div>
             </div>
             <div class="hero-buttons">
@@ -458,8 +454,21 @@
                             <line x1="6" y1="6" x2="18" y2="6"></line>
                         </svg>
                     </div>
-                    <h3>Graph + Analytics, Unified</h3>
-                    <p>Columnar analytics and graph traversal in one pipeline. PageRank, Dijkstra, A*, Louvain, and LFTJ run alongside aggregations &mdash; no cross-system serialization.</p>
+                    <h3>Native Graph Engine in the DAG</h3>
+                    <p>Double-indexed CSR (forward + reverse, mmap-backed). BFS, DFS, Dijkstra, A*, PageRank, Louvain, Betweenness, LFTJ. Factorized execution avoids materializing cross-products; SIP propagates selection bitmaps backward through expand chains.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 8v4l3 2"></path>
+                            <path d="M3 12h2"></path>
+                            <path d="M19 12h2"></path>
+                        </svg>
+                    </div>
+                    <h3>Worst-Case-Optimal Joins</h3>
+                    <p>Leapfrog TrieJoin (LFTJ) gives output-size-optimal complexity for multi-way joins &mdash; the kind of guarantee usually only seen in research systems. Hash and sort-merge joins use radix partitions sized to fit L2 (256&nbsp;KB).</p>
                 </div>
 
                 <div class="feature-card">
@@ -468,8 +477,21 @@
                             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
                         </svg>
                     </div>
-                    <h3>Morsel-Driven Execution</h3>
-                    <p>Lazy DAG &rarr; multi-pass optimizer &rarr; fused morsel-driven bytecode. Type inference, constant folding, predicate pushdown, and operator fusion across 1024-element chunks.</p>
+                    <h3>Fused Morsel-Driven Bytecode</h3>
+                    <p>Element-wise ops fuse into a single-pass bytecode VM. 1024-element morsels stay L1-resident; the thread pool dispatches morsels in parallel. Lambdas compile lazily and run in a computed-goto VM.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 3h7v7H3z"></path>
+                            <path d="M14 3h7v7h-7z"></path>
+                            <path d="M14 14h7v7h-7z"></path>
+                            <path d="M3 14h7v7H3z"></path>
+                        </svg>
+                    </div>
+                    <h3>Multi-Pass Optimizer with SIP</h3>
+                    <p>Nothing runs until <code>ray_execute</code>. The optimizer rewrites the DAG through type inference, constant folding, sideways information passing, factorize, predicate pushdown, filter reorder, projection pushdown, partition pruning, fusion, and DCE.</p>
                 </div>
 
                 <div class="feature-card">
@@ -478,19 +500,8 @@
                             <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
                         </svg>
                     </div>
-                    <h3>Pure C17, Zero Deps</h3>
-                    <p>Single-header include &mdash; <code>include/rayforce.h</code>, full API in one file. Custom allocator, no malloc. Builds with <code>make</code>. Embeddable in any C/C++ project.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="16 18 22 12 16 6"></polyline>
-                            <polyline points="8 6 2 12 8 18"></polyline>
-                        </svg>
-                    </div>
-                    <h3>Rayfall Query Language</h3>
-                    <p>Lisp-like REPL with 170+ built-ins for arithmetic, aggregation, string, and temporal operations. Lambdas compile lazily to bytecode.</p>
+                    <h3>Custom Allocator, No malloc</h3>
+                    <p>Buddy allocator with slab cache delivers O(1) for ~90% of allocations. Thread-local arenas, lock-free allocation, COW ref counting. Pure C17, single-header public API, builds with <code>make</code>.</p>
                 </div>
 
                 <div class="feature-card">
@@ -500,20 +511,8 @@
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
                     </div>
-                    <h3>Rich Indexing</h3>
-                    <p>Per-column zone, hash, sort, and bloom indexes. HNSW for vector search. Memory-mapped storage with partition pruning and IPC serialization.</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                    </div>
-                    <h3>Multi-Language Bindings</h3>
-                    <p>Native bindings for Python, Rust, and JavaScript/WebAssembly. Use your preferred language &mdash; same engine underneath. MIT licensed.</p>
+                    <h3>Filter-Aware HNSW</h3>
+                    <p>Multi-metric ANN over HNSW (cosine, L2, inner-product). The <code>where</code> predicate pushes into the beam loop &mdash; rejected candidates don't consume result slots, so filtered <code>top-k</code> stays accurate without overscan.</p>
                 </div>
             </div>
         </div>
