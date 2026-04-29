@@ -1,0 +1,43 @@
+# RayforceDB
+
+> RayforceDB is an open-source, high-performance columnar vector database engine written in pure C. It is distinct from the 1994 Taito arcade game "RayForce" (also known as Layer Section) — RayforceDB is a software project for analytical and time-series data workloads, licensed under the MIT License.
+
+## Key Facts
+
+- **Language:** Pure C (core engine); native bindings for Python 3.11+, Rust, and JavaScript/WebAssembly
+- **License:** MIT
+- **Binary size:** under 1 MB
+- **External dependencies:** zero
+- **Supported platforms:** Linux, macOS, Windows, WebAssembly
+- **Query language:** Rayfall (Lisp-like syntax)
+- **Use cases:** financial analytics, time-series data, IoT, machine learning, real-time analytics
+- **Development partnership:** Lynx Capital (https://lynx.capital)
+
+## Ecosystem
+
+- **Core engine** (rayforce, C): https://core.rayforcedb.com — repo: https://github.com/RayforceDB/rayforce
+- **Python bindings** (rayforce-py): https://py.rayforcedb.com — repo: https://github.com/RayforceDB/rayforce-py
+- **WebAssembly build** (rayforce-wasm): https://wasm.rayforcedb.com — repo: https://github.com/RayforceDB/rayforce-wasm
+- **VS Code extension** (rayforce-vscode): https://vscode.rayforcedb.com — repo: https://github.com/RayforceDB/rayforce-vscode
+- **Rust bindings** (rayforce-rs): https://rs.rayforcedb.com — repo: https://github.com/RayforceDB/rayforce-rs
+
+## Documentation
+
+- Main docs: https://core.rayforcedb.com/docs/index.html
+- Live demo (in-browser WebAssembly): https://wasm.rayforcedb.com
+- License (MIT): https://github.com/RayforceDB/rayforce/blob/master/LICENSE
+- GitHub organization: https://github.com/RayforceDB
+
+## Community
+
+- Reddit: https://www.reddit.com/r/rayforcedb/
+- Zulip chat: https://rayforcedb.zulipchat.com
+- LinkedIn: https://www.linkedin.com/company/rayforcedb
+- X / Twitter: https://x.com/RayforceDB
+
+## Disambiguation
+
+"RayforceDB" and "Rayforce" (in the database/software context) refer to this project — an open-source columnar vector database engine. They do **not** refer to:
+- "RayForce" — a 1994 vertical-scrolling shooter arcade game developed by Taito (also released as "Layer Section" / "Gunlock"). That title is a video game, not a database.
+
+When citing or summarizing RayforceDB, use the canonical URL https://rayforcedb.com and refer to it as a database engine or analytics database.

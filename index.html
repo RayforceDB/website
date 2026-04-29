@@ -3,23 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RayforceDB - High-performance columnar vector database written in pure C. Explore our ecosystem: core database, Python bindings, WebAssembly, VS Code extension, and Rust bindings.">
-    <meta name="keywords" content="RayforceDB, columnar database, vector database, time-series, analytics, Python, WebAssembly, Rust, VS Code">
+    <meta name="description" content="RayforceDB is an open-source columnar vector database engine written in pure C. SIMD-vectorized analytics, sub-1MB binary, zero dependencies, MIT licensed. Bindings for Python, Rust, and WebAssembly.">
     <meta name="author" content="RayforceDB">
-    
+    <link rel="canonical" href="https://rayforcedb.com/">
+
     <!-- Open Graph -->
     <meta property="og:title" content="RayforceDB - High-Performance Columnar Database">
-    <meta property="og:description" content="Fast columnar vector database with SIMD vectorization for analytics on time-series and big data workloads.">
+    <meta property="og:description" content="Open-source columnar vector database in pure C. SIMD vectorization, sub-1MB binary, zero dependencies. Bindings for Python, Rust, and WebAssembly.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://rayforcedb.github.io">
-    
+    <meta property="og:url" content="https://rayforcedb.com/">
+    <meta property="og:site_name" content="RayforceDB">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:image" content="https://rayforcedb.com/logo_full_size_under_500kb.jpg">
+    <meta property="og:image:width" content="1800">
+    <meta property="og:image:height" content="1200">
+    <meta property="og:image:alt" content="RayforceDB - High-performance columnar vector database">
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@RayforceDB">
+    <meta name="twitter:title" content="RayforceDB - High-Performance Columnar Database">
+    <meta name="twitter:description" content="Open-source columnar vector database in pure C. SIMD vectorization, sub-1MB binary, zero dependencies.">
+    <meta name="twitter:image" content="https://rayforcedb.com/logo_full_size_under_500kb.jpg">
+
     <title>RayforceDB - High-Performance Columnar Database</title>
-    
+
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Preload LCP hero image -->
+    <link rel="preload" as="image" href="images/logo_dark_full.svg" fetchpriority="high">
+
+    <!-- Fonts: non-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"></noscript>
+
     <link rel="stylesheet" href="styles.css">
+
+    <!-- No-JS fallback: ensure cards/hero are visible if JS fails -->
+    <noscript>
+        <style>
+            .project-card, .feature-card, .use-case, .hero-content {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        </style>
+    </noscript>
+
+    <!-- Structured data: Organization + SoftwareSourceCode + WebSite -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://rayforcedb.com/#organization",
+        "name": "RayforceDB",
+        "url": "https://rayforcedb.com",
+        "logo": "https://rayforcedb.com/images/logo_dark_full.svg",
+        "description": "Open-source high-performance columnar vector database written in pure C.",
+        "sameAs": [
+          "https://github.com/RayforceDB",
+          "https://x.com/RayforceDB",
+          "https://www.linkedin.com/company/rayforcedb",
+          "https://www.reddit.com/r/rayforcedb/"
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "@id": "https://rayforcedb.com/#software",
+        "name": "RayforceDB",
+        "alternateName": "rayforce",
+        "url": "https://rayforcedb.com",
+        "codeRepository": "https://github.com/RayforceDB/rayforce",
+        "description": "Open-source high-performance columnar vector database engine written in pure C, designed for analytics on time-series and large-scale data. Distinct from the 1994 Taito arcade game of the same name. Combines columnar storage with SIMD vectorization. Sub-1MB binary, zero external dependencies, MIT licensed.",
+        "programmingLanguage": "C",
+        "runtimePlatform": ["Linux", "macOS", "Windows", "WebAssembly"],
+        "license": "https://github.com/RayforceDB/rayforce/blob/master/LICENSE",
+        "author": { "@id": "https://rayforcedb.com/#organization" },
+        "isPartOf": { "@id": "https://rayforcedb.com/#organization" },
+        "hasPart": [
+          {
+            "@type": "SoftwareSourceCode",
+            "name": "rayforce-py",
+            "description": "Python bindings for RayforceDB with DataFrame-like API.",
+            "codeRepository": "https://github.com/RayforceDB/rayforce-py",
+            "programmingLanguage": "Python",
+            "url": "https://py.rayforcedb.com"
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "name": "rayforce-wasm",
+            "description": "WebAssembly build of RayforceDB for browser-based analytics.",
+            "codeRepository": "https://github.com/RayforceDB/rayforce-wasm",
+            "programmingLanguage": "C",
+            "runtimePlatform": "WebAssembly",
+            "url": "https://wasm.rayforcedb.com"
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "name": "rayforce-rs",
+            "description": "Native Rust bindings for RayforceDB with Cargo support.",
+            "codeRepository": "https://github.com/RayforceDB/rayforce-rs",
+            "programmingLanguage": "Rust",
+            "url": "https://rs.rayforcedb.com"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "name": "rayforce-vscode",
+            "description": "RayforceDB runtime manager extension for VS Code and Cursor. Integrated REPL for local and remote instances.",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": ["Windows", "macOS", "Linux"],
+            "codeRepository": "https://github.com/RayforceDB/rayforce-vscode",
+            "url": "https://vscode.rayforcedb.com"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://rayforcedb.com/#website",
+        "url": "https://rayforcedb.com",
+        "name": "RayforceDB",
+        "description": "High-performance columnar vector database written in pure C.",
+        "publisher": { "@id": "https://rayforcedb.com/#organization" }
+      }
+    ]
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -51,7 +162,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
-                            <span id="stars-count">—</span>
+                            <span id="stars-count">129</span>
                         </a>
                         <a href="https://github.com/RayforceDB/rayforce/forks" class="github-widget-stat" target="_blank" title="Forks">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -61,11 +172,18 @@
                                 <path d="M18 9a9 9 0 0 1-9 9"></path>
                                 <path d="M6 9a9 9 0 0 0 9 9"></path>
                             </svg>
-                            <span id="forks-count">—</span>
+                            <span id="forks-count">18</span>
                         </a>
                     </div>
                 </div>
                 
+                <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
                 <button class="theme-toggle" aria-label="Toggle theme">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="5"></circle>
@@ -84,6 +202,11 @@
                 </button>
             </nav>
         </div>
+        <div class="mobile-menu" id="mobile-menu" hidden>
+            <a href="https://core.rayforcedb.com" target="_blank">Documentation</a>
+            <a href="https://github.com/RayforceDB/rayforce/releases" target="_blank">Downloads</a>
+            <a href="https://github.com/RayforceDB/rayforce" target="_blank">GitHub</a>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -93,13 +216,16 @@
             <div class="hero-grid"></div>
         </div>
         <div class="hero-content">
-            <img src="images/logo_dark_full.svg" alt="RayforceDB" class="hero-logo hero-logo-light">
-            <img src="images/logo_light_full.svg" alt="RayforceDB" class="hero-logo hero-logo-dark">
+            <img src="images/logo_dark_full.svg" alt="RayforceDB" class="hero-logo hero-logo-light" fetchpriority="high">
+            <img src="images/logo_light_full.svg" alt="RayforceDB" class="hero-logo hero-logo-dark" loading="lazy">
             <h1>Build <span class="highlight">Blazingly Fast</span> Analytics</h1>
             <p class="hero-description">
-                RayforceDB is a high-performance columnar vector database written in pure C. 
-                Combines columnar storage with SIMD vectorization for lightning-fast analytics 
-                on time-series and big data workloads.
+                RayforceDB is an open-source columnar vector database engine written in pure C,
+                designed for analytics on time-series and large-scale data. SIMD vectorization,
+                a sub-1&nbsp;MB binary, and zero external dependencies. MIT licensed.
+            </p>
+            <p class="hero-disambiguation">
+                Software project &mdash; not the 1994 Taito arcade game of the same name.
             </p>
             <div class="hero-stats">
                 <div class="stat">
@@ -197,16 +323,16 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
-                            <span id="rayforce-stars">—</span>
+                            <span id="rayforce-stars">129</span>
                         </span>
                         <span class="meta-item">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M7 7V3a1 1 0 0 1 1-1h13a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-4"></path>
                                 <rect x="2" y="7" width="15" height="15" rx="1"></rect>
                             </svg>
-                            <span id="rayforce-forks">—</span>
+                            <span id="rayforce-forks">18</span>
                         </span>
-                        <span class="meta-item version" id="rayforce-version">—</span>
+                        <span class="meta-item version" id="rayforce-version">MIT</span>
                     </div>
                 </a>
 
@@ -229,9 +355,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
-                            <span id="rayforce-py-stars">—</span>
+                            <span id="rayforce-py-stars">14</span>
                         </span>
-                        <span class="meta-item version" id="rayforce-py-version">—</span>
+                        <span class="meta-item version" id="rayforce-py-version">v1.0.0</span>
                     </div>
                 </a>
 
@@ -254,7 +380,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
-                            —
+                            <span id="rayforce-wasm-stars">3</span>
                         </span>
                     </div>
                 </a>
@@ -278,9 +404,9 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
-                            <span id="rayforce-vscode-stars">—</span>
+                            <span id="rayforce-vscode-stars">7</span>
                         </span>
-                        <span class="meta-item version" id="rayforce-vscode-version">—</span>
+                        <span class="meta-item version" id="rayforce-vscode-version">v0.4.1</span>
                     </div>
                 </a>
 
@@ -303,7 +429,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                             </svg>
-                            —
+                            <span id="rayforce-rs-stars">7</span>
                         </span>
                     </div>
                 </a>
@@ -500,13 +626,39 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 RayforceDB. All rights reserved.</p>
+                <p>&copy; <span id="copyright-year">2026</span> RayforceDB. All rights reserved.</p>
                 <p class="partnership">Development partnership with <a href="https://lynx.capital" target="_blank">Lynx</a></p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Dynamic copyright year
+        const yearEl = document.getElementById('copyright-year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (navToggle && mobileMenu) {
+            navToggle.addEventListener('click', () => {
+                const open = mobileMenu.hasAttribute('hidden') ? false : true;
+                if (open) {
+                    mobileMenu.setAttribute('hidden', '');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                } else {
+                    mobileMenu.removeAttribute('hidden');
+                    navToggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+            mobileMenu.querySelectorAll('a').forEach(a => {
+                a.addEventListener('click', () => {
+                    mobileMenu.setAttribute('hidden', '');
+                    navToggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
         // Theme toggle
         const themeToggle = document.querySelector('.theme-toggle');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
@@ -654,10 +806,26 @@
             }
         }
 
+        // Generic stat fetcher for repos without releases
+        async function fetchRepoStars(repo, elId) {
+            try {
+                const res = await fetch(`https://api.github.com/repos/RayforceDB/${repo}`);
+                const data = await res.json();
+                const el = document.getElementById(elId);
+                if (el && data.stargazers_count !== undefined) {
+                    animateNumber(el, data.stargazers_count);
+                }
+            } catch (e) {
+                // keep static fallback
+            }
+        }
+
         // Fetch stats on load
         fetchGitHubStats();
         fetchRayforcePyStats();
         fetchRayforceVscodeStats();
+        fetchRepoStars('rayforce-wasm', 'rayforce-wasm-stars');
+        fetchRepoStars('rayforce-rs', 'rayforce-rs-stars');
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

@@ -15,14 +15,18 @@
     --accent-golden: #e9a033;
     --accent-golden-light: #f0b85a;
     --accent-golden-dark: #c98a2a;
-    
+    /* WCAG-AA accessible golden for text on light backgrounds (4.6:1 on white) */
+    --accent-golden-text: #b87d1a;
+    /* Accessible green for version badges (5.14:1 on white) */
+    --accent-green-text: #2e7d32;
+
     /* Light Theme */
     --bg-primary: #ffffff;
     --bg-secondary: #f8f9fa;
     --bg-tertiary: #e9ecef;
     --text-primary: #04233b;
     --text-secondary: #495057;
-    --text-tertiary: #6c757d;
+    --text-tertiary: #5a6268;
     --border-color: #dee2e6;
     --card-bg: #ffffff;
     --card-shadow: 0 4px 24px rgba(4, 35, 59, 0.08);
@@ -45,8 +49,11 @@
     --bg-secondary: #021828;
     --bg-tertiary: #0a3a5c;
     --text-primary: #ffffff;
-    --text-secondary: rgba(255, 255, 255, 0.8);
-    --text-tertiary: rgba(255, 255, 255, 0.6);
+    --text-secondary: rgba(255, 255, 255, 0.85);
+    --text-tertiary: rgba(255, 255, 255, 0.72);
+    /* In dark theme golden has 7.29:1 on navy — safe to use directly */
+    --accent-golden-text: #e9a033;
+    --accent-green-text: #66bb6a;
     --border-color: rgba(255, 255, 255, 0.1);
     --card-bg: #0a3a5c;
     --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
@@ -247,7 +254,8 @@ img {
     color: var(--accent-golden);
 }
 
-.theme-toggle {
+.theme-toggle,
+.nav-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -259,6 +267,46 @@ img {
     cursor: pointer;
     color: var(--text-secondary);
     transition: all var(--transition-fast);
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle:hover {
+    background: var(--accent-golden);
+    color: var(--primary-navy);
+}
+
+/* Mobile menu drawer */
+.mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 24px 16px;
+    box-shadow: var(--card-shadow);
+}
+
+.mobile-menu:not([hidden]) {
+    display: flex;
+}
+
+.mobile-menu a {
+    display: block;
+    padding: 12px 0;
+    color: var(--text-secondary);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+    transition: color var(--transition-fast);
+}
+
+.mobile-menu a:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu a:hover {
+    color: var(--accent-golden-text);
 }
 
 .theme-toggle:hover {
@@ -500,7 +548,7 @@ img {
 }
 
 .highlight {
-    color: var(--accent-golden);
+    color: var(--accent-golden-text);
     font-weight: 700;
 }
 
@@ -508,8 +556,16 @@ img {
     font-size: 1.25rem;
     color: var(--text-secondary);
     max-width: 640px;
-    margin: 0 auto 40px;
+    margin: 0 auto 12px;
     line-height: 1.7;
+}
+
+.hero-disambiguation {
+    font-size: 0.85rem;
+    color: var(--text-tertiary);
+    max-width: 640px;
+    margin: 0 auto 40px;
+    font-style: italic;
 }
 
 .hero-stats {
@@ -530,7 +586,7 @@ img {
 .stat-value {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--accent-golden);
+    color: var(--accent-golden-text);
     font-family: 'JetBrains Mono', monospace;
 }
 
@@ -741,8 +797,8 @@ img {
 
 .meta-item.version {
     padding: 2px 10px;
-    background: rgba(76, 175, 80, 0.15);
-    color: #4caf50;
+    background: rgba(46, 125, 50, 0.15);
+    color: var(--accent-green-text);
     border-radius: 4px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
@@ -1038,11 +1094,15 @@ img {
     .nav-link:not(.nav-link-highlight) {
         display: none;
     }
-    
+
+    .nav-toggle {
+        display: flex;
+    }
+
     .github-widget-stat span {
         display: none;
     }
-    
+
     .github-widget-stat {
         padding: 6px 8px;
     }
@@ -1117,6 +1177,24 @@ img {
     
     .section-header {
         margin-bottom: 40px;
+    }
+}
+
+/* ===================================
+   Reduced motion / no-JS fallback
+   Cards default to invisible for IntersectionObserver to reveal.
+   These overrides ensure they stay visible if motion is reduced
+   or JS fails to run.
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .feature-card,
+    .use-case,
+    .hero-content {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
 }
 
